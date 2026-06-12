@@ -1,0 +1,1 @@
+import{i as e}from"./index-B_k1zrPl.js";var t=e();function n(){return(0,t.jsx)(`div`,{children:`Hello "/+¦n¦n+/$slug"!`})}export{n as component};

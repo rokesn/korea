@@ -1,0 +1,153 @@
+import { r as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
+import { u as Link } from "../_libs/@tanstack/react-router+[...].mjs";
+import { n as SiteHeader, t as SiteFooter } from "./site-chrome-r0GB9mtT.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/terms-ZewTg4vr.js
+var import_jsx_runtime = require_jsx_runtime();
+var LAST_UPDATED = "2026-06-12";
+function TermsPage() {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "min-h-screen bg-background text-foreground",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SiteHeader, {}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("main", {
+				className: "mx-auto max-w-3xl px-4 py-12",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("nav", {
+						"aria-label": "breadcrumb",
+						className: "mb-4 text-xs text-muted-foreground",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+								to: "/",
+								className: "hover:underline",
+								children: "홈"
+							}),
+							" ",
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								"aria-hidden": "true",
+								children: "›"
+							}),
+							" 이용약관"
+						]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+						className: "font-display text-3xl font-bold tracking-tight",
+						children: "이용약관"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+						className: "mt-1 text-xs text-muted-foreground",
+						children: ["최종 업데이트: ", LAST_UPDATED]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "mt-4 text-sm text-muted-foreground",
+						children: "주소모아는 한국 사용자에게 인기 사이트의 최신 주소를 안내하는 무료 링크모음 서비스입니다. 본 서비스를 이용함으로써 아래 약관에 동의한 것으로 간주됩니다."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "mt-8 font-display text-xl font-bold",
+						children: "1. 서비스 목적 및 성격"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "mt-2 text-sm leading-7",
+						children: "주소모아는 외부 사이트의 접속 주소 안내를 목적으로 하며, 외부 사이트의 콘텐츠를 직접 제공하거나 저장하지 않습니다. 주소모아는 단순히 공개된 정보를 수집·정리하여 사용자의 편의를 위한 안내 서비스를 제공합니다. 링크된 외부 사이트의 운영·콘텐츠·저작권에 대한 책임은 해당 사이트 운영자에게 있습니다."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "mt-8 font-display text-xl font-bold",
+						children: "2. 이용 자격"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "mt-2 text-sm leading-7",
+						children: "본 서비스는 만 14세 이상 모든 사용자가 이용할 수 있습니다. 만 14세 미만의 사용자는 법정 대리인의 동의를 얻어 이용하여야 합니다. 서비스 이용을 위한 별도 회원가입은 요구되지 않습니다."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "mt-8 font-display text-xl font-bold",
+						children: "3. 책임의 한계 및 면책"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "mt-2 text-sm leading-7",
+						children: "주소모아는 링크된 외부 사이트의 광고, 콘텐츠, 바이러스, 악성코드 등으로 인해 발생하는 손해에 대해 어떠한 법적 책임도 지지 않습니다. 외부 사이트 이용 시 광고 차단 확장 프로그램(예: uBlock Origin) 및 최신 보안 소프트웨어 사용을 강력히 권장합니다. 또한 주소모아가 제공하는 링크의 정확성·최신성에 대해 보증하지 않으며, 접속 오류나 콘텐츠 변경에 따른 피해에 대해 책임을 지지 않습니다."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "mt-8 font-display text-xl font-bold",
+						children: "4. 금지 행위"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "mt-2 text-sm leading-7",
+						children: "다음 행위는 엄격히 금지됩니다:"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", {
+						className: "mt-2 list-disc space-y-1.5 pl-5 text-sm leading-7",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "자동화된 봇·크롤러를 이용한 무단 대량 수집" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "서비스 운영 서버에 과부하를 주는 행위" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "본 사이트의 콘텐츠를 무단으로 복제·배포·상업적 이용" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "타 사용자나 제3자를 기망하거나 사칭하는 행위" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "관련 법령에 위반되는 모든 행위" })
+						]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "mt-8 font-display text-xl font-bold",
+						children: "5. 저작권 및 지식재산권"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+						className: "mt-2 text-sm leading-7",
+						children: [
+							"주소모아가 자체 제작한 텍스트, 디자인, 코드, 로고 등의 지식재산권은 주소모아에 귀속됩니다. 외부 사이트에 대한 정보(이름, 주소 등)는 공개 정보를 기반으로 하며, 해당 권리는 각 원저작자에게 있습니다. 저작권 침해가 발생했다고 판단되는 경우 ",
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+								to: "/contact",
+								className: "text-primary hover:underline",
+								children: "문의 페이지"
+							}),
+							"를 통해 알려주시면 신속히 검토하겠습니다."
+						]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "mt-8 font-display text-xl font-bold",
+						children: "6. 광고 및 제3자 서비스"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "mt-2 text-sm leading-7",
+						children: "주소모아는 서비스 유지를 위해 제3자 광고를 게재할 수 있습니다. 광고 콘텐츠는 주소모아의 공식 의견과 무관하며, 광고주의 제품·서비스에 대한 책임은 광고주에게 있습니다. 광고 차단기 사용은 사용자의 선택이며, 이로 인한 기능 제한이 발생할 수 있습니다."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "mt-8 font-display text-xl font-bold",
+						children: "7. 서비스 중단 및 변경"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "mt-2 text-sm leading-7",
+						children: "주소모아는 시스템 점검, 서버 장애, 운영 정책 변경 등의 사유로 서비스를 일시 중단하거나 종료할 수 있습니다. 이로 인한 손해에 대해 주소모아는 별도의 보상 의무를 지지 않으며, 가능한 경우 사전 공지를 드리겠습니다."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "mt-8 font-display text-xl font-bold",
+						children: "8. 준거법 및 분쟁 해결"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "mt-2 text-sm leading-7",
+						children: "본 약관은 대한민국 법률에 따라 해석되고 적용됩니다. 서비스 이용과 관련한 분쟁 발생 시 우선 협의를 통해 해결하며, 협의가 불가한 경우 관련 법령에 따른 관할 법원에 소를 제기할 수 있습니다."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						className: "mt-8 font-display text-xl font-bold",
+						children: "9. 약관 변경"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "mt-2 text-sm leading-7",
+						children: "주소모아는 관련 법령 개정, 서비스 변경 등의 사유로 본 약관을 변경할 수 있습니다. 중요한 변경사항은 서비스 내 공지사항을 통해 최소 7일 전에 안내합니다. 변경 후에도 서비스를 계속 이용하시면 변경된 약관에 동의한 것으로 간주됩니다."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "mt-10 rounded-xl border border-border bg-card/50 p-4 text-sm text-muted-foreground",
+						children: [
+							"약관 관련 문의사항은 ",
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+								to: "/contact",
+								className: "text-primary hover:underline",
+								children: "문의 페이지"
+							}),
+							"를 이용해 주세요."
+						]
+					})
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SiteFooter, {})
+		]
+	});
+}
+//#endregion
+export { TermsPage as component };

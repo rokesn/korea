@@ -15,7 +15,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as Char43Char166nChar166nChar43SlugRouteImport } from './routes/+¦n¦n+.$slug'
+import { Route as Char47553Char53356SlugRouteImport } from './routes/링크.$slug'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -47,12 +47,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const Char43Char166nChar166nChar43SlugRoute =
-  Char43Char166nChar166nChar43SlugRouteImport.update({
-    id: '/+¦n¦n+/$slug',
-    path: '/+¦n¦n+/$slug',
-    getParentRoute: () => rootRouteImport,
-  } as any)
+const Char47553Char53356SlugRoute = Char47553Char53356SlugRouteImport.update({
+  id: '/링크/$slug',
+  path: '/링크/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,7 +60,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/+¦n¦n+/$slug': typeof Char43Char166nChar166nChar43SlugRoute
+  '/링크/$slug': typeof Char47553Char53356SlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,7 +69,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/+¦n¦n+/$slug': typeof Char43Char166nChar166nChar43SlugRoute
+  '/링크/$slug': typeof Char47553Char53356SlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,7 +79,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/+¦n¦n+/$slug': typeof Char43Char166nChar166nChar43SlugRoute
+  '/링크/$slug': typeof Char47553Char53356SlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,7 +90,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
-    | '/+¦n¦n+/$slug'
+    | '/링크/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,7 +99,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
-    | '/+¦n¦n+/$slug'
+    | '/링크/$slug'
   id:
     | '__root__'
     | '/'
@@ -109,7 +108,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/terms'
-    | '/+¦n¦n+/$slug'
+    | '/링크/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,7 +118,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
-  Char43Char166nChar166nChar43SlugRoute: typeof Char43Char166nChar166nChar43SlugRoute
+  Char47553Char53356SlugRoute: typeof Char47553Char53356SlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -166,11 +165,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/+¦n¦n+/$slug': {
-      id: '/+¦n¦n+/$slug'
-      path: '/+¦n¦n+/$slug'
-      fullPath: '/+¦n¦n+/$slug'
-      preLoaderRoute: typeof Char43Char166nChar166nChar43SlugRouteImport
+    '/링크/$slug': {
+      id: '/링크/$slug'
+      path: '/링크/$slug'
+      fullPath: '/링크/$slug'
+      preLoaderRoute: typeof Char47553Char53356SlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -183,7 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
-  Char43Char166nChar166nChar43SlugRoute: Char43Char166nChar166nChar43SlugRoute,
+  Char47553Char53356SlugRoute: Char47553Char53356SlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

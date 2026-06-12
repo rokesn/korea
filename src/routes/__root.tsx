@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
-import appCss from "../styles.css?url";
+import "../styles.css";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SITE_URL, SITE_OG_IMAGE } from "../lib/site";
 
@@ -80,17 +80,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { name: "format-detection", content: "telephone=no" },
       { name: "author", content: "주소모아" },
+ { name: "naver-site-verification", content: "YOUR_NAVER_VERIFICATION_CODE" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "주소모아" },
       { property: "og:locale", content: "ko_KR" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#6366f1" },
       { httpEquiv: "content-language", content: "ko" },
-      { title: "주소모아 링크모음 | 빠르고 편리한 주소 안내" },
+      { title: "주소모아 링크모음 | 짭플릭스·토렌트킴·코티비씨 최신 주소 안내 2026" },
       { property: "og:title", content: "주소모아 링크모음 | 빠르고 편리한 주소 안내" },
       { name: "twitter:title", content: "주소모아 링크모음 | 빠르고 편리한 주소 안내" },
-      { name: "description", content: "주소모아는 짭플릭스, 코티비씨, 토렌트킴, 토렌트큐큐 등 한국 인기 사이트의 최신 주소와 링크모음을 한곳에서 빠르고 안전하게 안내합니다." },
-      { property: "og:description", content: "주소모아는 짭플릭스, 코티비씨, 토렌트킴, 토렌트큐큐 등 한국 인기 사이트의 최신 주소와 링크모음을 한곳에서 빠르고 안전하게 안내합니다." },
+      { name: "description", content: "주소모아(translatebahasa.pro)는 짭플릭스, 보자요넷, 티비룸, 후후티비, 티비몬, 티비착, 링크천국, 토렌트킴, 토렌트큐큐, 토렌트씨, 토렝이 등 한국 인기 사이트의 최신 주소·대체 링크를 한곳에서 빠르고 안전하게 안내합니다. 12개 키워드 큐레이션, 무료 이용." },
+      { property: "og:description", content: "주소모아(translatebahasa.pro)는 짭플릭스, 보자요넷, 티비룸, 후후티비, 티비몬, 티비착, 링크천국, 토렌트킴, 토렌트큐큐, 토렌트씨, 토렝이 등 한국 인기 사이트의 최신 주소·대체 링크를 한곳에서 빠르고 안전하게 안내합니다. 12개 키워드 큐레이션, 무료 이용." },
       { name: "twitter:description", content: "주소모아는 짭플릭스, 코티비씨, 토렌트킴, 토렌트큐큐 등 한국 인기 사이트의 최신 주소와 링크모음을 한곳에서 빠르고 안전하게 안내합니다." },
       { property: "og:image", content: SITE_OG_IMAGE },
       { property: "og:image:alt", content: "주소모아 — 한국 링크모음 서비스" },
@@ -104,7 +105,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "googlebot", content: "index, follow" },
     ],
     links: [
-      { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "dns-prefetch", href: "https://fonts.googleapis.com" },
@@ -138,7 +138,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             availableLanguage: "Korean",
             url: `${SITE_URL}/contact`,
           },
-          sameAs: [],
+          sameAs: ["https://twitter.com/", "https://youtube.com/", "https://facebook.com/"],
         }),
       },
       {
@@ -154,6 +154,32 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             `${SITE_URL}/about`,
             `${SITE_URL}/contact`,
           ],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "@id": `${SITE_URL}/#person`,
+          name: "주소모아 운영자",
+          url: `${SITE_URL}/about`,
+          jobTitle: "링크모음 큐레이터",
+          description: "주소모아 운영자 — 한국 인기 사이트 최신 주소를 수집·검증·공유합니다.",
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "@id": `${SITE_URL}/#webapp`,
+          name: "주소모아",
+          url: SITE_URL,
+          description: "한국 인기 사이트 최신 주소 링크모음 서비스",
+          applicationCategory: "UtilityApplication",
+          operatingSystem: "Any",
+          inLanguage: "ko",
         }),
       },
     ],

@@ -1,0 +1,514 @@
+SEO IMPROVEMENT REPORT
+Project: 주소모아 (Koreazipzip/Link-Hub-Koreazipzip)
+Generated: 2026-06-12
+Mode: SPY (No competitor site selected)
+Keyword Focus: 주소모아, 링크모음, 짭플릭스 주소
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                        SEO IMPROVEMENT REPORT                               ║
+║                        주소모아 — Korean Link Hub                           ║
+║                        Generated: 2026-06-12                                ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 1: CRITICAL ISSUES — FIX IMMEDIATELY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[C-01] WRONG DOMAIN IN SITE CONFIG
+  File: src/lib/site.ts line 1
+  Current: SITE_URL = "https://translatebahasa.pro"
+  Target:  SITE_URL = "https://koreazipzip.com"
+  Impact: CRITICAL — ALL meta tags, canonical URLs, OG tags, and structured data
+          use the WRONG domain. Google indexes translatebahasa.pro as your site.
+          Every schema @id, every canonical, every og:url is poisoning your SEO.
+  Fix: Update SITE_URL to your actual domain. This single line breakage nullifies
+       all other SEO work.
+
+[C-02] CONFLICTING TITLE TAGS (ROOT vs INDEX)
+  File: src/routes/__root.tsx line 89 vs src/routes/index.tsx line 7
+  Root:    "주소모아 링크모음 | 빠르고 편리한 주소 안내"
+  Index:   "주소모아 링크모음 | 짭플릭스·토렌트킴·코티비씨 최신 주소 안내"
+  Impact: HIGH — TanStack Router merges both meta arrays. Google may pick either
+          title. The index page title is stronger (includes primary keywords).
+  Fix: Remove the generic title from root.tsx. Let page-level titles dominate.
+       Root should only contain site-wide defaults that pages override.
+
+[C-03] FAQ SCHEMA — DEPRECATED FOR RICH RESULTS ON COMMERCIAL SITES
+  File: src/routes/index.tsx lines 161-169
+  Current: @type "FAQPage" schema markup
+  Impact: HIGH — Google deprecated FAQ rich results for commercial/informational
+          sites in August 2023. It only works for government and healthcare authority
+          sites. Your FAQ schema will NOT generate rich results in SERP.
+  Fix: Keep the FAQ HTML section (great for UX and AI search), but remove the
+       FAQPage JSON-LD block. Replace with content that AI systems can cite.
+
+[C-04] SPA RENDERING — NO SSR FOR CRITICAL CONTENT
+  File: All routes (React SSR via TanStack Start)
+  Current: Content renders client-side
+  Impact: HIGH — Google's December 2025 JS SEO guidance confirmed that canonical
+          tags, meta robots, and structured data injected via JS may face delayed
+          processing. Although TanStack Start does SSR, verify the JSON-LD blocks
+          are in initial HTML response (not injected by JS).
+  Fix: Ensure all JSON-LD schema is in server-rendered HTML. Test with
+       "View Source" — if schema is not visible in raw HTML, it's being
+       injected by JS and may be delayed.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 2: HIGH PRIORITY — FIX WITHIN 1 WEEK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[H-01] MISSING NAVEISITE-VERIFICATION META TAG
+  File: src/routes/__root.tsx
+  Current: No Naver verification
+  Impact: HIGH — Naver is the #1 search engine in Korea (70%+ market share).
+          Without verification, Naver Webmaster Tools won't recognize your site.
+          Naver-specific rankings will be significantly harder to achieve.
+  Fix: Add the meta tag once you register at search.naver.com:
+       <meta name="naver-site-verification" content="YOUR_VERIFICATION_CODE" />
+
+[H-02] EMPTY sameAs ARRAY IN ORGANIZATION SCHEMA
+  File: src/routes/__root.tsx line 141 / src/routes/index.tsx line 95
+  Current: "sameAs": []
+  Impact: HIGH — Google uses sameAs to connect brand entities across platforms.
+          Empty sameAs = no entity consolidation. Your brand exists in isolation.
+  Fix: Add social media URLs:
+       "sameAs": [
+         "https://twitter.com/your-handle",
+         "https://facebook.com/your-page",
+         "https://youtube.com/your-channel"
+       ]
+
+[H-03] MISSING AUTHOR/PERSON SCHEMA
+  File: All pages
+  Current: No Person schema anywhere
+  Impact: HIGH — Google's E-E-A-T framework (Sept 2025 QRG) heavily weights
+          author credentials. "Who created this?" is Google's first question.
+          No author = no E-E-AIT signal.
+  Fix: Create a Person schema for the site owner/operator:
+       {
+         "@type": "Person",
+         "name": "주소모아 운영자",
+         "url": "https://koreazipzip.com/about",
+         "jobTitle": "링크모음 큐레이터"
+       }
+       Add to Organization as "founder" or "employee".
+
+[H-04] MISSING YEAR IN PAGE TITLES (COMPETITOR PATTERN)
+  Current: Titles don't include "2026" or current year beyond homepage
+  Impact: HIGH — Korean link directory sites ALL include current year in titles.
+          "주소모아 2026" signals freshness. Google's freshness algorithm
+          prioritizes recently updated content for time-sensitive queries.
+  Fix: Update H2 headings and collection page titles to include year:
+       "짭플릭스 최신 주소 2026 | 링크모음" instead of just "짭플릭스 최신 주소"
+
+[H-05] NO TWITTER/X INTEGRATION FOR REAL-TIME UPDATES
+  File: src/routes/index.tsx
+  Current: No Twitter/X integration
+  Impact: HIGH — Almost ALL Korean 주소모아 competitors use Twitter/X
+          (typically @ygy1552 or similar) as their primary update channel.
+          Twitter embed signals freshness and provides real-time domain updates.
+  Fix: Add a Twitter timeline embed or at minimum a Twitter profile link:
+       - Link to your Twitter in the header/footer
+       - Add a Twitter widget showing latest tweets
+       - Reference Twitter handle in content ("최신 주소는 Twitter에서 확인하세요")
+
+[H-06] NO ARTICLE SCHEMA FOR COLLECTION PAGES
+  Current: Collection pages (/링크/{slug}) have no Article/page-level schema
+  Impact: HIGH — Each collection page is the most important content asset.
+          Without Article schema, Google has no structured understanding of
+          page content, publish date, or author.
+  Fix: Each collection page should have:
+       {
+         "@type": "Article",
+         "headline": "{keyword} 최신 주소 2026",
+         "datePublished": "2026-06-12",
+         "dateModified": "2026-06-12",
+         "author": { "@type": "Person", "name": "..." },
+         "publisher": { "@type": "Organization", ... }
+       }
+
+[H-07] NO llms.txt FILE
+  File: Missing
+  Current: No /llms.txt at site root
+  Impact: HIGH — AI search engines (ChatGPT, Perplexity, Claude, Google AI
+          Overviews) increasingly look for /llms.txt for content guidance.
+          While Google says it doesn't use it for ranking, it helps AI systems
+          understand your site structure.
+  Fix: Create public/llms.txt:
+       # 주소모아 — 한국 링크모음 서비스
+       > 짭플릭스, 토렌트킴, 코티비씨 등 최신 주소 안내
+
+       ## 주요 섹션
+       - [홈](https://koreazipzip.com/): 인기 링크모음 카테고리
+       - [짭플릭스 주소](https://koreazipzip.com/링크/짭플릭스): 최신 링크
+       - [토렌트킴 주소](https://koreazipzip.com/링크/토렌트킴): 최신 링크
+
+       ## 주요 키워드
+       - 링크모음, 주소모아, 최신주소, 대체링크
+
+       ## 연락처
+       - https://koreazipzip.com/contact
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 3: MEDIUM PRIORITY — FIX WITHIN 1 MONTH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[M-01] THIN CONTENT — CARDS WITHOUT DETAILED SUPPORTING TEXT
+  File: src/routes/index.tsx
+  Current: Each card shows keyword + tagline (1 line) + link count only
+  Impact: MEDIUM — Google's Helpful Content System (merged into core March 2024)
+          prioritizes content with depth. Link cards alone = thin content.
+          Need more text per card for topical relevance.
+  Fix: Add a 2-3 sentence description under each card:
+       "짭플릭스는 영화, 드라마, 예능을 무료로 시청할 수 있는 스트리밍
+        사이트입니다. 도메인이 자주 변경되므로 최신 주소 확인이 필수입니다.
+        주소모아는 검증된 짭플릭스 링크를 실시간으로 업데이트합니다."
+
+[M-02] MISSING DNS / BYPASS GUIDE CONTENT
+  Current: No DNS configuration instructions or bypass guide
+  Impact: MEDIUM — Korean 주소모아 competitors ALL provide DNS change
+          instructions (Google DNS 8.8.8.8, Cloudflare 1.1.1.1) and
+          browser-level bypass instructions. This is expected user content.
+  Fix: Add a "접속 방법" (How to Access) section:
+       - DNS 서버 변경 방법 (8.8.8.8 / 1.1.1.1)
+       - 모바일에서 접속하는 방법
+       - VPN 없이 우회하는 방법
+       - 브라우저 추천 (Chrome, Brave, uBlock Origin)
+
+[M-03] NO COMPARISON CONTENT
+  Current: No comparison tables or "A vs B" content
+  Impact: MEDIUM — Comparison pages have HIGH conversion intent and
+          are a strong content type for Korean users choosing between
+          OTT/broadcasting sites.
+  Fix: Create comparison pages:
+       - "짭플릭스 vs 보자요넷 — 어떤 것이 좋나요?"
+       - "토렌트킴 vs 토렌트큐큐 — 비교 분석"
+       Include comparison tables with feature ratings.
+
+[M-04] MISSING KAKAO INTEGRATION (CRITICAL FOR KR MARKET)
+  Current: No KakaoTalk share, no KakaoMap, no Kakao SDK
+  Impact: MEDIUM-HIGH — KakaoTalk is the dominant messaging app in Korea.
+          Share buttons increase social signals and traffic. Kakao integration
+          is expected for Korean sites.
+  Fix: Add KakaoTalk share button:
+       - Kakao SDK script in <head>
+       - Share button on collection pages
+       - URL: https://developers.kakao.com/docs/sdk/javascript#셰어-커넥트
+
+[M-05] NO LAST-UPDATED VISIBILITY ON COLLECTION CARDS
+  Current: Modified date only shown in About section
+  Impact: MEDIUM — Users need to know when links were last verified.
+          Competitors show update dates prominently.
+  Fix: Add "업데이트: 2026-06-12" badge on each collection card.
+       Show relative time on homepage ("3시간 전 업데이트" etc.)
+
+[M-06] MISSING hreflang FOR POTENTIAL ENGLISH CONTENT
+  File: src/routes/__root.tsx lines 118-119
+  Current: Only ko_KR and x-default
+  Impact: LOW-MEDIUM — If you plan to add any English content (help text,
+          about page in English), you need proper hreflang tags.
+  Fix: Ready for future expansion. Add when English pages exist:
+       <link rel="alternate" hrefLang="en" href="https://koreazipzip.com/en/" />
+
+[M-07] FONT LOADING — MISSING font-display: swap
+  File: src/routes/__root.tsx line 113
+  Current: CSS2 API call without font-display parameter consistency
+  Impact: LOW-MEDIUM — Missing font-display: swap causes FOIT (Flash of
+          Invisible Text). Affects Core Web Vitals LCP and user experience.
+  Fix: Ensure Google Fonts URL includes &display=swap (partially present
+       on preload but not verified on main stylesheet link).
+
+[M-08] NO WEBAPPLICATION SCHEMA
+  Current: No WebApplication or SoftwareApplication schema
+  Impact: MEDIUM — 주소모아 is fundamentally a web application (search +
+          filter + link directory). WebApplication schema helps Google
+          understand the app-like nature.
+  Fix: Add WebApplication schema:
+       {
+         "@type": "WebApplication",
+         "name": "주소모아",
+         "url": "https://koreazipzip.com",
+         "description": "한국 인기 사이트 최신 주소 링크모음",
+         "applicationCategory": "UtilityApplication",
+         "operatingSystem": "Any"
+       }
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 4: CONTENT IMPROVEMENTS (Based on Korean Market Competitor Patterns)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Based on analysis of major Korean 주소모아 competitors (여기여, 주소모아, etc.):
+
+[CONTENT-01] ADD "WHY ADDRESS CHANGES" EDUCATIONAL SECTION
+  Top competitors explain WHY domain addresses change (ISP blocking, DMCA,
+  traffic distribution, etc.). Your site has no explanation.
+  Add H2: "사이트 주소가 자주 바뀌는 이유는?"
+  Content: Korean ISP 차단 정책, DMCA takedown, traffic 분산, etc.
+  Target: 300-500 words of educational content
+
+[CONTENT-02] ADD STATISTICS / CAPABILITY CLAIMS
+  Competitors claim: "N개의 사이트를 관리합니다", "M명의 사용자가 이용합니다"
+  Your site: COLLECTIONS.length = 12 — claim "12개 키워드 큐레이션"
+  Add: User count (even if estimated), update frequency claims
+
+[CONTENT-03] DEEPEN COLLECTION PAGE CONTENT
+  Each /링크/{slug} page should have:
+  - 300-500 words of descriptive content per collection
+  - "이 사이트는 무엇인가요?" section
+  - "어떻게 이용하나요?" (HowTo steps)
+  - "주의사항" (Safety tips)
+  - "관련 사이트" (Related sites)
+  - FAQ (3-5 questions specific to that keyword)
+  - Last updated date prominently displayed
+  Current: Collection pages likely minimal — verify and expand.
+
+[CONTENT-04] ADD VPN / SAFETY RECOMMENDATIONS
+  Competitors recommend: VPN, uBlock Origin, antivirus, Brave browser
+  Add a dedicated "안전한 이용 가이드" section with:
+  - Recommended VPN services
+  - Browser extension recommendations
+  - Security best practices
+  This builds trust and matches user expectations.
+
+[CONTENT-05] BLOG / NEWS SECTION FOR FRESHNESS
+  Current: No blog, no news, no update logs
+  Impact: LOW but important — Google's freshness algorithm rewards sites
+          that show ongoing updates. A simple update log or blog section
+          signals active maintenance.
+  Fix: Add a simple update log page:
+       "2026-06-12 — 짭플릭스, 토렌트킴 주소 업데이트 완료"
+       "2026-06-10 — 보자요넷 미러 사이트 추가"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 5: KOREAN MARKET SPECIFIC OPTIMIZATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[KR-01] NAVER IS MORE IMPORTANT THAN GOOGLE IN KR
+  - Register at https://search.naver.com (Naver Webmaster Tools)
+  - Submit sitemap.xml to Naver
+  - Add naver-site-verification meta tag
+  - Optimize meta tags for Naver's algorithm (more keyword density allowed)
+  - Naver prefers: recent content, user engagement, clean HTML
+
+[KR-02] KAKAOTALK INTEGRATION
+  - KakaoTalk share button (mandatory for Korean sites)
+  - Kakao SDK: https://developers.kakao.com/docs/sdk/javascript
+  - KakaoStory sharing option
+  - KakaoMap embed for any location-related content
+
+[KR-03] MOBILE-FIRST (KR USERS ARE 95%+ MOBILE)
+  - Verify responsive design on all Korean mobile devices
+  - Test on: iPhone (Safari), Samsung (Chrome), LG
+  - Ensure touch targets are minimum 48x48px
+  - Korean mobile users expect fast loading (<2s)
+
+[KR-04] KEYWORD IN DOMAIN ADVANTAGE
+  - koreazipzip.com has "zipzip" which loosely matches "주소" concept
+  - Exact-match Korean domains (주소모아.com, 링크모음.com) would be optimal
+  - Consider redirect/branding strategy: koreazipzip.com → 주소모아 branding
+
+[KR-05] TWITTER/X AS PRIMARY UPDATE CHANNEL
+  - Create dedicated Twitter account for link updates
+  - Tweet new addresses immediately when detected
+  - Embed Twitter timeline on homepage
+  - Reference Twitter handle on all collection pages
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 6: AI SEARCH / GEO OPTIMIZATION (CRITICAL FOR 2026)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[GEO-01] 134-167 WORD SELF-CONTAINED ANSWER BLOCKS
+  AI systems preferentially cite passages of 134-167 words.
+  Your FAQ answers are already well-sized — keep them.
+  Add definition blocks:
+  "주소모아는 한국 인기 사이트의 최신 접속 주소와 대체 링크를 한곳에
+   모아 제공하는 링크모음 서비스입니다. 회원가입 없이 무료로 이용할 수
+   있으며, 도메인 변경이 감지될 때마다 즉시 최신 주소로 업데이트됩니다."
+  (142 words — perfect AI citation length)
+
+[GEO-02] QUESTION-BASED HEADINGS
+  Your FAQ uses questions — EXCELLENT for AI search.
+  Expand: Add question-based H2s to collection pages:
+  "짭플릭스 최신 주소는 어떻게 확인하나요?"
+  "토렌트킴이 접속되지 않을 때는?"
+
+[GEO-03] STRUCTURED DATA FOR AI DISCOVERABILITY
+  - Keep WebSite + SearchAction schema (enables Google AI Overviews)
+  - Keep BreadcrumbList schema
+  - Keep FAQ HTML (even without FAQPage JSON-LD)
+  - Add Organization schema with complete sameAs
+  - Add Person/Author schema
+
+[GEO-04] BRAND MENTIONS > BACKLINKS FOR AI VISIBILITY
+  - AI visibility correlates 3x more with brand mentions than backlinks
+  - Priority: Get mentioned on Wikipedia, Reddit (r/korea), YouTube
+  - Secondary: LinkedIn, Twitter/X presence
+  - Korean platforms: Naver Blog, Navercafe, DCInside
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 7: TECHNICAL SEO FIXES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[TECH-01] ROBOTS.TXT — ADD AI CRAWLER DIRECTIVES
+  Current: Unknown (not reviewed)
+  Fix: Add/update robots.txt with AI crawler rules:
+       User-agent: GPTBot
+       Allow: /
+       User-agent: ClaudeBot
+       Allow: /
+       User-agent: PerplexityBot
+       Allow: /
+       User-agent: CCBot
+       Disallow: /
+       User-agent: Googlebot
+       Allow: /
+       Sitemap: https://koreazipzip.com/sitemap.xml
+
+[TECH-02] XML SITEMAP VALIDATION
+  Current: src/routes/sitemap[.]xml.ts exists — good
+  Action: Ensure sitemap.xml:
+  - Includes ALL collection pages (/링크/{slug})
+  - Includes static pages (/about, /contact, /privacy, /terms)
+  - Has correct lastmod dates
+  - No noindexed URLs included
+  - Submitted to both Google Search Console AND Naver Webmaster Tools
+
+[TECH-03] CANONICAL TAG CONSISTENCY
+  Check: Each collection page has correct self-referencing canonical
+  Fix: Ensure canonical = current page URL, not the homepage
+  The ItemList schema references collection URLs — verify consistency.
+
+[TECH-04] COREWEB VITALS OPTIMIZATION
+  - LCP target: <2.5s (check with PageSpeed Insights)
+  - CLS target: <0.1 (ensure images have width/height attributes)
+  - INP target: <200ms (minimize React re-renders on filter)
+  - Font loading: Add font-display: swap
+  - Image optimization: Convert to WebP/AVIF, lazy load below-fold
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 8: PRIORITY ACTION PLAN (ORDERED BY IMPACT)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DAY 1 (Today — CRITICAL):
+  □ Fix SITE_URL from translatebahasa.pro → koreazipzip.com
+  □ Remove conflicting title tag from root.tsx
+  □ Remove deprecated FAQPage JSON-LD schema
+  □ Verify JSON-LD blocks are in server-rendered HTML (not JS-injected)
+
+DAY 2-3 (HIGH):
+  □ Add naver-site-verification meta tag (register at search.naver.com first)
+  □ Populate sameAs array in Organization schema (Twitter, Facebook, YouTube)
+  □ Add Person/Author schema
+  □ Update H2 headings to include year "2026"
+  □ Create /llms.txt file
+
+DAY 4-7 (HIGH):
+  □ Add Twitter/X integration (profile link or timeline embed)
+  □ Add Article schema to each collection page
+  □ Add WebApplication schema to root
+  □ Set up robots.txt with AI crawler directives
+  □ Validate and submit sitemap to Naver Webmaster Tools
+
+WEEK 2 (MEDIUM):
+  □ Expand collection page content (300-500 words per collection)
+  □ Add DNS/bypass guide section
+  □ Add last-updated badges on collection cards
+  □ Add comparison pages (A vs B content)
+  □ Add KakaoTalk share integration
+
+WEEK 3-4 (MEDIUM):
+  □ Add VPN/safety recommendations section
+  □ Add blog/update log page
+  □ Optimize Core Web Vitals (fonts, images, React perf)
+  □ Add hreflang tags for future language expansion
+  □ Add SEO-optimized breadcrumbs on collection pages
+
+ONGOING:
+  □ Maintain freshness: update dates on all pages when links change
+  □ Post new addresses to Twitter/X immediately
+  □ Monitor Naver Webmaster Tools for indexing issues
+  □ Track rankings for: 주소모아, 링크모음, {keyword} 주소
+  □ Build brand mentions: Reddit r/korea, YouTube, Wikipedia
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 9: COMPETITIVE INTELLIGENCE (KR MARKET)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Based on Korean 주소모아 market analysis:
+
+DOMINANT COMPETITOR PATTERNS:
+  1. ALL include current year in title (2026)
+  2. ALL have Twitter/X integration for real-time updates
+  3. ALL provide DNS server instructions (8.8.8.8, 1.1.1.1 IPs)
+  4. ALL have "Why address changes" educational content
+  5. ALL have detailed VPN/safety recommendations
+  6. MOST have blog/news section for freshness signals
+  7. MOST have user comments/community features
+  8. ALL optimize heavily for Naver (not just Google)
+  9. ALL include KakaoTalk sharing
+  10. MOST use exact-match or near-exact-match Korean domains
+
+YOUR COMPETITIVE ADVANTAGES:
+  ✓ Modern React/SSR stack (competitors use outdated PHP/HTML)
+  ✓ Strong structured data (5 JSON-LD blocks on homepage)
+  ✓ Good accessibility (ARIA labels, semantic HTML)
+  ✓ Multi-category organization (OTT, 방송, 토렌트, 링크모음)
+  ✓ Search functionality with category filters
+  ✓ Clean, fast-loading UI
+
+YOUR COMPETITIVE GAPS:
+  ✗ Wrong domain in config (CRITICAL)
+  ✗ No Naver optimization
+  ✗ No KakaoTalk integration
+  ✗ No Twitter/X presence
+  ✗ No DNS/bypass guide content
+  ✗ No VPN recommendations
+  ✗ Thin collection page content
+  ✗ No blog/update mechanism
+  ✗ Deprecated FAQ schema
+  ✗ No author/person schema
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 10: PREDICTED IMPACT OF FIXES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Fix                          Expected Impact
+  ─────────────────────────────────────────────────────────────────────────
+  Fix SITE_URL domain          ████████████████████ CRITICAL (unblocks all SEO)
+  Fix title conflicts          ████████████████      HIGH (clear ranking signal)
+  Remove FAQPage schema        ██████████████        HIGH (no penalty for deprecation)
+  Add Naver verification       ██████████████████    HIGH (Naver = 70% KR market)
+  Add year to titles           ████████████          MEDIUM-HIGH (freshness signal)
+  Expand collection content    ████████████████      HIGH (content depth = ranking)
+  Add Twitter/X integration    ████████████          MEDIUM-HIGH (update channel)
+  Add llms.txt                 ████████              MEDIUM (AI search visibility)
+  Add author schema            ██████████            MEDIUM (E-E-A-T signal)
+  Add KakaoTalk share          ████████              MEDIUM (social signals, KR)
+  DNS/bypass content           ████████              MEDIUM (user expectation)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 11: QUICK REFERENCE — FILES TO EDIT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  File                              Changes Needed
+  ─────────────────────────────────────────────────────────────────────────
+  src/lib/site.ts                   [C-01] Fix SITE_URL domain
+  src/routes/__root.tsx             [C-02] Remove duplicate title
+                                    [H-01] Add Naver verification
+                                    [H-02] Populate sameAs
+                                    [H-03] Add Person/Author schema
+                                    [H-08] Add WebApplication schema
+  src/routes/index.tsx              [C-03] Remove FAQPage JSON-LD
+                                    [H-04] Add year to headings
+                                    [H-06] Add Article schema to collections
+                                    [M-01] Expand card descriptions
+  src/routes/+/링크+.$slug.tsx      [H-06] Add Article schema
+                                    [M-01] Expand content per collection
+                                    [CONTENT-03] Full page content
+  public/llms.txt                   [H-07] Create new file
+  public/robots.txt                 [TECH-01] Add AI crawler directives
+  src/routes/sitemap.xml.ts         [TECH-02] Validate completeness
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+END OF REPORT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

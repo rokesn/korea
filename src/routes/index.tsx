@@ -4,7 +4,7 @@ import { COLLECTIONS, SITE_URL, SITE_OG_IMAGE, SITE_NAME } from "@/lib/site";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { ArrowUpRight, Search, Zap, Shield, Clock } from "lucide-react";
 
-const TITLE = "주소모아 링크모음 | 짭플릭스·토렌트킴·코티비씨 최신 주소 안내";
+const TITLE = "주소모아 링크모음 | 짭플릭스·토렌트킴·코티비씨 최신 주소 안내 2026";
 const DESC =
   "주소모아에서 짭플릭스, 코티비씨, 토렌트킴, 토렌트큐큐, 토렌트씨, 토렝이, 보자요넷, 티비룸 등 한국 인기 사이트의 최신 주소와 대체 링크를 한곳에서 빠르고 안전하게 확인하세요.";
 
@@ -151,20 +151,6 @@ export const Route = createFileRoute("/")({
             description: c.metaDescription,
             url: `${SITE_URL}/링크/${encodeURI(c.hangulSlug)}`,
             image: SITE_OG_IMAGE,
-          })),
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "@id": `${SITE_URL}/#faq`,
-          name: "주소모아 자주 묻는 질문",
-          mainEntity: FAQ_ITEMS.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
           })),
         }),
       },

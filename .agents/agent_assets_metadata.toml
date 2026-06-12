@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "QmbEMj22Zt9Xs86Pkfbwl"
+uri = "file://homeimpr.txt"
+type = "text"
+title = "주소모아 홈페이지 SEO 개선 항목 전체 (homeimpr.txt)"

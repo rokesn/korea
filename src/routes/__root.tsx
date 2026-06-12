@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SITE_URL, SITE_OG_IMAGE } from "../lib/site";
 
 function NotFoundComponent() {
   return (
@@ -29,7 +30,6 @@ function NotFoundComponent() {
             홈으로 이동
           </Link>
         </div>
-
       </div>
     </div>
   );
@@ -68,7 +68,6 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             홈으로 이동
           </a>
         </div>
-
       </div>
     </div>
   );
@@ -92,16 +91,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "주소모아는 짭플릭스, 코티비씨, 토렌트킴, 토렌트큐큐 등 한국 인기 사이트의 최신 주소와 링크모음을 한곳에서 빠르고 안전하게 안내합니다." },
       { property: "og:description", content: "주소모아는 짭플릭스, 코티비씨, 토렌트킴, 토렌트큐큐 등 한국 인기 사이트의 최신 주소와 링크모음을 한곳에서 빠르고 안전하게 안내합니다." },
       { name: "twitter:description", content: "주소모아는 짭플릭스, 코티비씨, 토렌트킴, 토렌트큐큐 등 한국 인기 사이트의 최신 주소와 링크모음을 한곳에서 빠르고 안전하게 안내합니다." },
-
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/503ab073-f8bd-4396-a36b-7a1945e6eda6/id-preview-76067a4c--738e003c-9ac9-457a-a684-1b94a624e2f1.lovable.app-1781224175413.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/503ab073-f8bd-4396-a36b-7a1945e6eda6/id-preview-76067a4c--738e003c-9ac9-457a-a684-1b94a624e2f1.lovable.app-1781224175413.png" },
+      { property: "og:image", content: SITE_OG_IMAGE },
+      { property: "og:image:alt", content: "주소모아 — 한국 링크모음 서비스" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { name: "twitter:image", content: SITE_OG_IMAGE },
+      { name: "twitter:image:alt", content: "주소모아 — 한국 링크모음 서비스" },
+      { name: "robots", content: "index, follow" },
+      { name: "googlebot", content: "index, follow" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap" },
-      { rel: "alternate", hrefLang: "ko", href: "https://translatebahasa.pro/" },
+      { rel: "dns-prefetch", href: "https://fonts.googleapis.com" },
+      { rel: "dns-prefetch", href: "https://fonts.gstatic.com" },
+      { rel: "dns-prefetch", href: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" },
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.svg" },
+      { rel: "apple-touch-icon", href: "/favicon.svg" },
+      { rel: "manifest", href: "/site.webmanifest" },
+      { rel: "alternate", hrefLang: "ko", href: `${SITE_URL}/` },
+      { rel: "alternate", hrefLang: "x-default", href: `${SITE_URL}/` },
     ],
     scripts: [
       {
@@ -110,8 +122,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "주소모아",
-          url: "https://translatebahasa.pro",
+          url: SITE_URL,
+          logo: `${SITE_URL}/favicon.svg`,
           description: "한국 사용자를 위한 링크모음 및 주소 안내 사이트",
+          inLanguage: "ko",
+          areaServed: "KR",
+          sameAs: [],
         }),
       },
     ],
@@ -141,7 +157,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
   );

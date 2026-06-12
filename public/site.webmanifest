@@ -1,0 +1,13 @@
+{
+  "name": "주소모아",
+  "short_name": "주소모아",
+  "description": "한국 인기 사이트 최신 주소와 링크모음 — 짭플릭스, 토렌트킴, 코티비씨 등",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0f13",
+  "theme_color": "#6366f1",
+  "lang": "ko",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

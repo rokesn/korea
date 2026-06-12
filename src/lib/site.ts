@@ -1,6 +1,7 @@
 export const SITE_URL = "https://translatebahasa.pro";
 export const SITE_NAME = "주소모아";
 export const SITE_TAGLINE = "링크모음 | 빠르고 편리한 주소 안내";
+export const SITE_OG_IMAGE = "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/503ab073-f8bd-4396-a36b-7a1945e6eda6/id-preview-76067a4c--738e003c-9ac9-457a-a684-1b94a624e2f1.lovable.app-1781224175413.png";
 
 export interface LinkItem {
   name: string;

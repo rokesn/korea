@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, SITE_OG_IMAGE } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
@@ -8,11 +8,32 @@ export const Route = createFileRoute("/contact")({
     meta: [
       { title: "문의하기 | 주소모아 링크모음" },
       { name: "description", content: "주소모아에 링크 추가 요청, 오류 신고, 광고 및 제휴 문의를 보내세요. 빠르게 확인 후 답변드립니다." },
-      { property: "og:title", content: "문의하기 | 주소모아" },
+      { property: "og:title", content: "문의하기 | 주소모아 링크모음" },
+      { property: "og:description", content: "주소모아에 링크 추가 요청, 오류 신고, 광고 및 제휴 문의를 보내세요. 빠르게 확인 후 답변드립니다." },
       { property: "og:url", content: `${SITE_URL}/contact` },
+      { property: "og:type", content: "website" },
       { property: "og:locale", content: "ko_KR" },
+      { property: "og:image", content: SITE_OG_IMAGE },
+      { property: "og:image:alt", content: "주소모아 문의하기" },
+      { name: "twitter:title", content: "문의하기 | 주소모아 링크모음" },
+      { name: "twitter:description", content: "주소모아에 링크 추가 요청, 오류 신고, 광고 및 제휴 문의를 보내세요. 빠르게 확인 후 답변드립니다." },
+      { name: "twitter:image", content: SITE_OG_IMAGE },
+      { name: "twitter:image:alt", content: "주소모아 문의하기" },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/contact` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "홈", item: SITE_URL },
+            { "@type": "ListItem", position: 2, name: "문의하기", item: `${SITE_URL}/contact` },
+          ],
+        }),
+      },
+    ],
   }),
 });
 
@@ -21,8 +42,8 @@ function ContactPage() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-4 py-12">
-        <nav className="mb-4 text-xs text-muted-foreground">
-          <Link to="/" className="hover:underline">홈</Link> <span>›</span> 문의하기
+        <nav aria-label="breadcrumb" className="mb-4 text-xs text-muted-foreground">
+          <Link to="/" className="hover:underline">홈</Link> <span aria-hidden="true">›</span> 문의하기
         </nav>
         <h1 className="font-display text-3xl font-bold tracking-tight">문의하기</h1>
         <p className="mt-4 text-sm text-muted-foreground">

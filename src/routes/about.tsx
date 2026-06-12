@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
-import { SITE_URL, COLLECTIONS } from "@/lib/site";
+import { SITE_URL, SITE_OG_IMAGE, COLLECTIONS } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
@@ -8,12 +8,32 @@ export const Route = createFileRoute("/about")({
     meta: [
       { title: "주소모아 소개 | 한국 링크모음·주소 안내 사이트" },
       { name: "description", content: "주소모아는 짭플릭스, 코티비씨, 토렌트킴, 토렌트큐큐 등 한국 인기 사이트의 최신 주소와 링크모음을 한곳에서 안전하게 안내하는 서비스입니다." },
-      { property: "og:title", content: "주소모아 소개" },
-      { property: "og:description", content: "한국 사용자를 위한 신뢰할 수 있는 링크모음 서비스, 주소모아를 소개합니다." },
+      { property: "og:title", content: "주소모아 소개 | 한국 링크모음·주소 안내 사이트" },
+      { property: "og:description", content: "주소모아는 짭플릭스, 코티비씨, 토렌트킴, 토렌트큐큐 등 한국 인기 사이트의 최신 주소와 링크모음을 한곳에서 안전하게 안내하는 서비스입니다." },
       { property: "og:url", content: `${SITE_URL}/about` },
+      { property: "og:type", content: "website" },
       { property: "og:locale", content: "ko_KR" },
+      { property: "og:image", content: SITE_OG_IMAGE },
+      { property: "og:image:alt", content: "주소모아 소개 — 한국 링크모음 서비스" },
+      { name: "twitter:title", content: "주소모아 소개 | 한국 링크모음·주소 안내 사이트" },
+      { name: "twitter:description", content: "주소모아는 짭플릭스, 코티비씨, 토렌트킴, 토렌트큐큐 등 한국 인기 사이트의 최신 주소와 링크모음을 한곳에서 안전하게 안내하는 서비스입니다." },
+      { name: "twitter:image", content: SITE_OG_IMAGE },
+      { name: "twitter:image:alt", content: "주소모아 소개 — 한국 링크모음 서비스" },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/about` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "홈", item: SITE_URL },
+            { "@type": "ListItem", position: 2, name: "소개", item: `${SITE_URL}/about` },
+          ],
+        }),
+      },
+    ],
   }),
 });
 
@@ -22,8 +42,8 @@ function AboutPage() {
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-4 py-12">
-        <nav className="mb-4 text-xs text-muted-foreground">
-          <Link to="/" className="hover:underline">홈</Link> <span>›</span> 소개
+        <nav aria-label="breadcrumb" className="mb-4 text-xs text-muted-foreground">
+          <Link to="/" className="hover:underline">홈</Link> <span aria-hidden="true">›</span> 소개
         </nav>
         <h1 className="font-display text-3xl font-bold tracking-tight">주소모아 소개</h1>
         <p className="mt-4 text-muted-foreground">

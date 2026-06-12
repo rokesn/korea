@@ -1,4 +1,15 @@
 User-agent: *
 Allow: /
 
+User-agent: Googlebot
+Allow: /
+
+User-agent: NaverBot
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+Crawl-delay: 1
+
 Sitemap: https://translatebahasa.pro/sitemap.xml

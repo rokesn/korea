@@ -1,0 +1,2 @@
+- [Corrupted route file fix](corrupted-route-fix.md) — sandbox can't delete/rename invalid-UTF-8 filenames; use tsr.config.json routeFileIgnorePattern instead.
+- [Styles.css recovery](styles-recovery.md) — src/styles.css can be lost; restore with `git show <commit>:src/styles.css > src/styles.css`.

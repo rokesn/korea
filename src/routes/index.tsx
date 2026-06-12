@@ -11,6 +11,8 @@ const DESC =
 const PUBLISHED = "2026-06-01T00:00:00+09:00";
 const MODIFIED  = "2026-06-12T00:00:00+09:00";
 
+const HERO_SHORTCUTS = ["짭플릭스", "토렌트킴", "코티비씨", "토렌트큐큐", "토렝이"];
+
 const FAQ_ITEMS = [
   {
     q: "주소모아는 무엇인가요?",
@@ -51,6 +53,7 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },
+      { name: "keywords", content: "짭플릭스 주소, 토렌트킴 주소, 코티비씨 주소, 토렌트큐큐, 토렝이, 보자요넷, 티비룸, 후후티비, 티비몬, 티비착, 링크천국, 한국 링크모음, 최신 주소, 대체 링크, 주소모아" },
       {
         name: "robots",
         content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
@@ -72,10 +75,6 @@ export const Route = createFileRoute("/")({
       { property: "og:image:alt",   content: "주소모아 링크모음 — 한국 인기 사이트 최신 주소" },
       { property: "og:image:width",  content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:updated_time", content: MODIFIED },
-      { property: "article:published_time", content: PUBLISHED },
-      { property: "article:modified_time",  content: MODIFIED },
-      { property: "article:section",        content: "링크모음" },
       { name: "twitter:title",       content: TITLE },
       { name: "twitter:description", content: DESC },
       { name: "twitter:image",       content: SITE_OG_IMAGE },
@@ -117,6 +116,27 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
+          "@type": "WebPage",
+          "@id": `${SITE_URL}/#webpage`,
+          url: `${SITE_URL}/`,
+          name: TITLE,
+          description: DESC,
+          isPartOf: { "@id": `${SITE_URL}/#website` },
+          about: { "@id": `${SITE_URL}/#organization` },
+          inLanguage: "ko",
+          datePublished: PUBLISHED,
+          dateModified: MODIFIED,
+          breadcrumb: { "@id": `${SITE_URL}/#breadcrumb` },
+          speakable: {
+            "@type": "SpeakableSpecification",
+            cssSelector: ["#hero-heading", "#collections-heading"],
+          },
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
           "@type": "ItemList",
           "@id": `${SITE_URL}/#collection-list`,
           name: "주소모아 추천 링크모음",
@@ -130,6 +150,7 @@ export const Route = createFileRoute("/")({
             name: `${c.keyword} 링크모음`,
             description: c.metaDescription,
             url: `${SITE_URL}/링크/${encodeURI(c.hangulSlug)}`,
+            image: SITE_OG_IMAGE,
           })),
         }),
       },
@@ -152,8 +173,24 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
+          "@id": `${SITE_URL}/#breadcrumb`,
           itemListElement: [
             { "@type": "ListItem", position: 1, name: "홈", item: SITE_URL },
+          ],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          "@id": `${SITE_URL}/#howto`,
+          name: "주소모아에서 사이트 주소 찾는 방법",
+          description: "주소모아를 이용해 짭플릭스·토렌트킴 등 최신 주소를 찾는 3단계 방법",
+          step: [
+            { "@type": "HowToStep", position: 1, name: "키워드 입력", text: "상단 검색창에 원하는 키워드를 입력합니다." },
+            { "@type": "HowToStep", position: 2, name: "카테고리 선택", text: "카테고리 필터로 OTT, 방송, 토렌트 등을 좁힙니다." },
+            { "@type": "HowToStep", position: 3, name: "주소 확인", text: "키워드 카드를 클릭해 최신 주소와 대체 링크를 확인합니다." },
           ],
         }),
       },
@@ -178,6 +215,12 @@ function Home() {
         c.slug.includes(query.toLowerCase())),
   );
   const torrentItems = COLLECTIONS.filter((c) => c.category === "토렌트");
+
+  const modifiedDate = new Date(MODIFIED).toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
@@ -236,8 +279,27 @@ function Home() {
               </button>
             </form>
 
+            {/* Popular keyword shortcuts */}
+            <div className="mt-4 flex flex-wrap justify-center items-center gap-x-3 gap-y-1.5 text-xs text-muted-foreground">
+              <span>바로가기:</span>
+              {HERO_SHORTCUTS.map((kw) => {
+                const col = COLLECTIONS.find((c) => c.keyword === kw);
+                return col ? (
+                  <Link
+                    key={kw}
+                    to="/링크/$slug"
+                    params={{ slug: col.hangulSlug }}
+                    className="hover:text-foreground hover:underline transition-colors"
+                    aria-label={`${kw} 최신 주소 링크모음 바로가기`}
+                  >
+                    {kw}
+                  </Link>
+                ) : null;
+              })}
+            </div>
+
             <div
-              className="mt-6 flex flex-wrap justify-center gap-2"
+              className="mt-4 flex flex-wrap justify-center gap-2"
               role="group"
               aria-label="카테고리 필터"
             >
@@ -309,6 +371,7 @@ function Home() {
             <p role="status" className="py-12 text-center text-muted-foreground">검색 결과가 없습니다.</p>
           ) : (
             <ul
+              role="list"
               className="grid gap-5 list-none sm:grid-cols-2 lg:grid-cols-3"
               aria-label="링크모음 목록"
             >
@@ -336,6 +399,9 @@ function Home() {
                       {c.keyword} <span className="sr-only">주소 링크모음</span>
                     </h3>
                     <p className="line-clamp-2 text-sm text-muted-foreground">{c.tagline}</p>
+                    <p className="text-[10px] text-muted-foreground/70">
+                      {c.keyword} 최신 주소 · 링크모음
+                    </p>
                     <div className="mt-auto flex items-center justify-between pt-2">
                       <span className="text-xs text-muted-foreground">{c.links.length}개 링크</span>
                       <span className="inline-flex items-center gap-1 text-xs font-medium text-grad-brand">
@@ -371,12 +437,12 @@ function Home() {
               <a
                 href="#collections"
                 className="text-sm font-medium text-grad-brand hover:underline"
-                aria-label="전체 링크모음 섹션으로 이동"
+                aria-label="전체 링크모음 목록으로 이동"
               >
-                전체 보기 →
+                전체 링크모음 보기 →
               </a>
             </div>
-            <ul className="grid gap-4 list-none sm:grid-cols-2 lg:grid-cols-4" aria-label="토렌트 사이트 링크모음">
+            <ul role="list" className="grid gap-4 list-none sm:grid-cols-2 lg:grid-cols-4" aria-label="토렌트 사이트 링크모음">
               {torrentItems.map((c) => (
                 <li key={c.slug}>
                   <Link
@@ -452,7 +518,7 @@ function Home() {
                   className="text-xs text-muted-foreground"
                   aria-label="최근 업데이트"
                 >
-                  업데이트: 2026-06-12
+                  업데이트: {modifiedDate}
                 </time>
               </div>
             </div>
@@ -463,9 +529,10 @@ function Home() {
               <h2 className="mt-2 font-display text-3xl font-bold">자주 묻는 질문</h2>
               <p className="mt-1 text-sm text-muted-foreground">짭플릭스·토렌트킴·코티비씨 관련 자주 묻는 질문</p>
               <dl className="mt-4 space-y-3">
-                {FAQ_ITEMS.map((f) => (
+                {FAQ_ITEMS.map((f, idx) => (
                   <details
                     key={f.q}
+                    open={idx === 0}
                     className="group rounded-2xl border border-border bg-card p-4 open:ring-brand"
                   >
                     <summary className="cursor-pointer list-none font-semibold flex items-center justify-between text-sm">

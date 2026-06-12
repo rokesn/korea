@@ -20,7 +20,7 @@ export function SiteHeader() {
             </span>
           </span>
         </Link>
-        <nav className="hidden items-center gap-1 text-sm md:flex">
+        <nav aria-label="주요 메뉴" className="hidden items-center gap-1 text-sm md:flex">
           <Link to="/" className="rounded-lg px-3 py-2 hover:bg-accent">홈</Link>
           <a href="/#collections" className="rounded-lg px-3 py-2 hover:bg-accent">링크모음</a>
           <a href="/#torrent" className="rounded-lg px-3 py-2 hover:bg-accent">토렌트</a>
@@ -66,18 +66,23 @@ export function SiteFooter() {
 
           <div>
             <p className="mb-3 font-display text-sm font-bold">주요 페이지</p>
-            <ul className="space-y-2 text-sm">
+            <ul aria-label="주요 페이지 링크" className="space-y-2 text-sm">
               <li><Link to="/" className="text-muted-foreground hover:text-foreground hover:underline">홈</Link></li>
               <li><Link to="/about" className="text-muted-foreground hover:text-foreground hover:underline">주소모아 소개</Link></li>
               <li><Link to="/contact" className="text-muted-foreground hover:text-foreground hover:underline">문의하기</Link></li>
               <li><Link to="/privacy" className="text-muted-foreground hover:text-foreground hover:underline">개인정보처리방침</Link></li>
               <li><Link to="/terms" className="text-muted-foreground hover:text-foreground hover:underline">이용약관</Link></li>
+              <li>
+                <a href="/sitemap.xml" className="text-muted-foreground hover:text-foreground hover:underline">
+                  사이트맵
+                </a>
+              </li>
             </ul>
           </div>
 
           <div>
             <p className="mb-3 font-display text-sm font-bold">OTT · 방송 링크모음</p>
-            <ul className="space-y-2 text-sm">
+            <ul aria-label="OTT·방송 링크모음" className="space-y-2 text-sm">
               {ott.map((c) => (
                 <li key={c.slug}>
                   <Link
@@ -94,7 +99,7 @@ export function SiteFooter() {
 
           <div>
             <p className="mb-3 font-display text-sm font-bold">토렌트 링크모음</p>
-            <ul className="space-y-2 text-sm">
+            <ul aria-label="토렌트 링크모음" className="space-y-2 text-sm">
               {torrent.map((c) => (
                 <li key={c.slug}>
                   <Link
